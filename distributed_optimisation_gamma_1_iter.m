@@ -559,8 +559,8 @@ tic
 for iter = 1:maxIter
     disp(['Iteration ',num2str(iter)])
     gamma_lambda = 5e-1;
-    gamma_mu = 0.5/iter;
-    gamma_nu = 0.5/iter;
+    gamma_mu = 0.1/iter;
+    gamma_nu = 0.1/iter;
     
     U0 = u_opt;
     x_temp = x;
