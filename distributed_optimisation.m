@@ -602,9 +602,9 @@ for iter = 1:maxIter
         %% Optimization
         tic
         if iter>1 && mean(Merit_end)>0
-            [u_opt(:,n),fval,exitflag,output] = cplexqp((H+H')/2,F',[Aineq],[bineq],[],[],lb,ub,[],options);      %
+            [u_opt(:,n),fval,exitflag,output] = cplexqp((H+H')/2+diag(repmat([0 0.5],1,ending)),F',[Aineq],[bineq],[],[],lb,ub,[],options);      %
         elseif iter==1
-            [u_opt(:,n),fval,exitflag,output] = cplexqp((H+H')/2,F',[Aineq],[bineq],[],[],lb,ub,[],options);      %
+            [u_opt(:,n),fval,exitflag,output] = cplexqp((H+H')/2+diag(repmat([0 0.5],1,ending)),F',[Aineq],[bineq],[],[],lb,ub,[],options);      %
         elseif mean(Merit_end)<0
             [u_opt(:,n),fval,exitflag,output] = cplexqp((H+H')/2,F',[Aineq],[bineq],[],[],lb,ub,[],options);      %
         end
@@ -726,7 +726,7 @@ for iter = 1:maxIter
                 OK = 1;
             elseif Merit_end(n) < Merit
                 OK = 0;
-                gain(n) = gain(n)/1.3;
+                gain(n) = gain(n)/1.35;
             end
 % OK = 1;
         else
